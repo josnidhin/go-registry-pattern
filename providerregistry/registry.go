@@ -9,20 +9,14 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/josnidhin/go-registry-pattern/domain"
 	"github.com/josnidhin/go-registry-pattern/logger"
 )
 
 var registerMutex sync.Mutex
 
-var registry = make(map[domain.ProviderName]Provider)
+var registry = make(map[ProviderName]Provider)
 
-type Provider interface {
-	Name() domain.ProviderName
-	Dispatch(domain.Transaction) error
-}
-
-func Register(name domain.ProviderName, provider Provider) {
+func Register(name ProviderName, provider Provider) {
 	registerMutex.Lock()
 	defer registerMutex.Unlock()
 
@@ -37,7 +31,7 @@ func Register(name domain.ProviderName, provider Provider) {
 	registry[name] = provider
 }
 
-func GetProvider(name domain.ProviderName) (p Provider, err error) {
+func GetProvider(name ProviderName) (p Provider, err error) {
 	p, ok := registry[name]
 	if !ok {
 		err = fmt.Errorf("provider %q is not registered", name)

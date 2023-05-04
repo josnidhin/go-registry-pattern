@@ -19,23 +19,23 @@ func main() {
 	rsize := 1000
 
 	cases := []struct {
-		ProviderName domain.ProviderName
+		ProviderName providerregistry.ProviderName
 		Transaction  domain.Transaction
 	}{
 		{
-			ProviderName: domain.ProviderName("Provider A"),
+			ProviderName: providerregistry.ProviderName("Provider A"),
 			Transaction: domain.Transaction{
 				Id: r.Intn(rsize),
 			},
 		},
 		{
-			ProviderName: domain.ProviderName("Provider B"),
+			ProviderName: providerregistry.ProviderName("Provider B"),
 			Transaction: domain.Transaction{
 				Id: r.Intn(rsize),
 			},
 		},
 		{
-			ProviderName: domain.ProviderName("Provider C"),
+			ProviderName: providerregistry.ProviderName("Provider C"),
 			Transaction: domain.Transaction{
 				Id: r.Intn(rsize),
 			},

@@ -12,11 +12,11 @@ import (
 )
 
 type Provider struct {
-	name   domain.ProviderName
+	name   providerregistry.ProviderName
 	logger *zap.Logger
 }
 
-func (p Provider) Name() domain.ProviderName {
+func (p Provider) Name() providerregistry.ProviderName {
 	return p.name
 }
 
@@ -28,7 +28,8 @@ func (p Provider) Dispatch(trx domain.Transaction) error {
 }
 
 func init() {
-	var name domain.ProviderName = "Provider B"
+	var name providerregistry.ProviderName = "Provider B"
+
 	p := Provider{
 		name:   name,
 		logger: logger.DefaultLogger.With(zap.Any("providerName", name)),
